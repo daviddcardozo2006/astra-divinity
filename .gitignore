@@ -1,0 +1,57 @@
+# =========================
+# Dependencias de Node
+# =========================
+node_modules/
+.npm/
+.eslintcache
+npm-debug.log*
+
+# =========================
+# Entornos y Credenciales (CRÍTICO)
+# =========================
+.env
+.env.*
+*.pem
+*.key
+*.crt
+
+# =========================
+# Compilación y Build
+# =========================
+dist/
+build/
+/frontend/build/
+/frontend/dist/
+/backend/dist/
+*.tsbuildinfo
+
+# =========================
+# Infraestructura y Docker
+# =========================
+# Volúmenes aislados (Jamás subir a Git)
+pg_data/
+caddy_data/
+caddy_config/
+docker-compose.override.yml
+
+# =========================
+# Logs y Testing
+# =========================
+logs/
+*.log
+coverage/
+.nyc_output/
+jest_coverage/
+
+# =========================
+# Sistema Operativo e IDEs
+# =========================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
