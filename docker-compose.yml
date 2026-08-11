@@ -34,7 +34,7 @@ services:
       DB_PASSWORD: app_password
       JWT_SECRET: super_secreto_desarrollo
     volumes:
-      - ./backend:/app
+      - ./apps/backend:/app
       - /app/node_modules
     depends_on:
       - database
