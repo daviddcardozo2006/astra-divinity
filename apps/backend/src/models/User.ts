@@ -2,47 +2,37 @@ import { DataTypes, Model } from 'sequelize';
 import sequelize from '../db';
 
 export class User extends Model {
-  public id!: number;
-  public username!: string;
+  public id!: string; // Cambiado a string por el UUID
+  public nombre!: string;
   public email!: string;
-  public password!: string;
-  public role!: 'admin' | 'client';
+  public password_hash!: string;
+  public rol!: 'cliente' | 'admin';
 }
 
 User.init(
   {
     id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
-    username: {
-      type: DataTypes.STRING(50),
+    nombre: {
+      type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
     },
     email: {
-      type: DataTypes.STRING(100),
+      type: DataTypes.STRING,
       allowNull: false,
       unique: true,
-      validate: {
-        isEmail: true,
-      },
     },
-    password: {
-      type: DataTypes.STRING(255),
+    password_hash: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
-    role: {
-      type: DataTypes.ENUM('admin', 'client'),
-      defaultValue: 'client',
-      allowNull: false,
+    rol: {
+      type: DataTypes.ENUM('cliente', 'admin'),
+      defaultValue: 'cliente',
     },
   },
-  {
-    sequelize,
-    modelName: 'User',
-    tableName: 'users',
-    timestamps: true, // Habilita createdAt y updatedAt automáticamente
-  }
+  { sequelize, modelName: 'User', tableName: 'usuarios', timestamps: false }
 );

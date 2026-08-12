@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import sequelize from './db';
-import './models/User'; // Carga el modelo para que Sequelize lo registre
+import './models/Index'; // Carga el modelo para que Sequelize lo registre
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -18,9 +18,7 @@ const startServer = async () => {
     await sequelize.authenticate();
     // eslint-disable-next-line no-console
     console.log('Conexión a la base de datos establecida con éxito.');
-
-    // Sincroniza los modelos (crea la tabla users si no existe)
-    await sequelize.sync({ alter: true });
+    
     // eslint-disable-next-line no-console
     console.log('Modelos sincronizados correctamente.');
 
