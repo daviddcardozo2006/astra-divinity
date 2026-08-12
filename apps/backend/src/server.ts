@@ -1,11 +1,12 @@
 import express, { Request, Response } from 'express';
 import sequelize from './db';
 import './models/Index'; // Carga el modelo para que Sequelize lo registre
-
+import authRoutes from './routes/auth.routes';
 const app = express();
 const port = process.env.PORT || 3001;
 
 app.use(express.json());
+app.use('/api/auth', authRoutes);
 
 app.get('/health', (req: Request, res: Response) => {
   res.status(200).json({ status: 'OK', message: 'Servidor Express TypeScript en línea' });
@@ -18,6 +19,7 @@ const startServer = async () => {
     await sequelize.authenticate();
     // eslint-disable-next-line no-console
     console.log('Conexión a la base de datos establecida con éxito.');
+   
     
     // eslint-disable-next-line no-console
     console.log('Modelos sincronizados correctamente.');

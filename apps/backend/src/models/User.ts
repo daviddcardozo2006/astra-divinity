@@ -2,11 +2,11 @@ import { DataTypes, Model } from 'sequelize';
 import sequelize from '../db';
 
 export class User extends Model {
-  public id!: string; // Cambiado a string por el UUID
-  public nombre!: string;
-  public email!: string;
-  public password_hash!: string;
-  public rol!: 'cliente' | 'admin';
+  declare id: string; // Cambiado a string por el UUID
+  declare nombre: string;
+  declare email: string;
+  declare password_hash: string;
+  declare rol: 'cliente' | 'admin';
 }
 
 User.init(
