@@ -1,12 +1,16 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../db';
+import { UserAttributes, UserCreationAttributes } from '../interfaces/user.interface';
 
-export class User extends Model {
-  declare id: string; // Cambiado a string por el UUID
+export class User extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
+  
+  // Torque total. Estructura idéntica a tu código, pero ahora responde al contrato.
+  declare id: string;
   declare nombre: string;
   declare email: string;
   declare password_hash: string;
   declare rol: 'cliente' | 'admin';
+
 }
 
 User.init(
@@ -34,5 +38,10 @@ User.init(
       defaultValue: 'cliente',
     },
   },
-  { sequelize, modelName: 'User', tableName: 'usuarios', timestamps: false }
+  { 
+    sequelize, 
+    modelName: 'User', 
+    tableName: 'usuarios', 
+    timestamps: false 
+  }
 );
