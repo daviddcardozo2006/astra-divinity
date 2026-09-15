@@ -1,12 +1,16 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '../db';
+import { OrderItemAttributes, OrderItemCreationAttributes } from '../interfaces/order-item.interface';
 
-export class OrderItem extends Model {
-  public id!: number;
-  public orden_id!: string;
-  public producto_id!: number;
-  public cantidad!: number;
-  public precio_unitario!: number;
+export class OrderItem extends Model<OrderItemAttributes, OrderItemCreationAttributes> implements OrderItemAttributes {
+  
+  // Reemplazo estructural estricto. Cero 'public', cero '!:'
+  declare id: number;
+  declare orden_id: string;
+  declare producto_id: number;
+  declare cantidad: number;
+  declare precio_unitario: number;
+
 }
 
 OrderItem.init(
@@ -17,5 +21,10 @@ OrderItem.init(
     cantidad: { type: DataTypes.INTEGER, allowNull: false },
     precio_unitario: { type: DataTypes.DECIMAL(10, 2), allowNull: false },
   },
-  { sequelize, modelName: 'OrderItem', tableName: 'detalle_ordenes', timestamps: false }
+  { 
+    sequelize, 
+    modelName: 'OrderItem', 
+    tableName: 'detalle_ordenes', 
+    timestamps: false 
+  }
 );
